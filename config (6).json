@@ -1,0 +1,104 @@
+{
+    "dns": {
+        "servers": [
+            {
+                "address": "103.137.63.117",
+                "port": 53,
+                "domains": [
+                    "domain:netflix.com",
+                    "domain:netflix.net",
+                    "domain:nflximg.net",
+                    "domain:nflxvideo.net",
+                    "domain:nflxso.net",
+                    "domain:nflxext.com"
+                ]
+            },
+            "localhost"
+        ]
+    },
+    "inbounds": [
+        {
+            "port": 31562,
+            "tag": "vmess-in",
+            "protocol": "vmess",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "7925ae81-d491-50ff-ef57-39730dda9d5b",
+                        "alterId": 64
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "ws",
+                "security": "none",
+                "tlsSettings": {
+                    "serverName": "",
+                    "allowInsecure": true
+                },
+                "tcpSettings": {
+                    "header": {
+                        "type": "none"
+                    }
+                },
+                "kcpSettings": {
+                    "header": {
+                        "type": "none"
+                    },
+                    "mtu": 1350,
+                    "congestion": false,
+                    "tti": 20,
+                    "uplinkCapacity": 5,
+                    "writeBufferSize": 1,
+                    "readBufferSize": 1,
+                    "downlinkCapacity": 20
+                },
+                "wsSettings": {
+                    "path": "\/v2ray\/",
+                    "connectionReuse": true
+                },
+                "httpSettings": {
+                    "path": "\/v2ray\/",
+                    "host": []
+                }
+            }
+        }
+    ],
+    "outbounds": [
+        {
+            "protocol": "freedom",
+            "settings": {
+                "domainStrategy": "UseIP"
+            },
+            "tag": "direct"
+        },
+        {
+            "protocol": "blackhole",
+            "settings": {
+                "response": {
+                    "type": "http"
+                }
+            },
+            "tag": "blocked"
+        }
+    ],
+    "routing": {
+        "domainStrategy": "AsIs",
+        "rules": [
+            {
+                "type": "field",
+                "inboundTag": [
+                    "vmess-in"
+                ],
+                "outboundTag": "direct"
+            },
+            {
+                "type": "field",
+                "ip": [
+                    "geoip:private"
+                ],
+                "outboundTag": "blocked"
+            }
+        ]
+    }
+}
