@@ -2,7 +2,7 @@
     "dns": {
         "servers": [
             {
-                "address": "103.137.63.117",
+                "address": "103.137.63.108",
                 "port": 53,
                 "domains": [
                     "domain:netflix.com",
@@ -10,7 +10,12 @@
                     "domain:nflximg.net",
                     "domain:nflxvideo.net",
                     "domain:nflxso.net",
-                    "domain:nflxext.com"
+                    "domain:nflxext.com",
+                    "domain:gamer-cds.cdn.hinet.net",
+                    "domain:gamer2-cds.cdn.hinet.net",
+                    "domain:gamer.com.tw",
+                    "domain:i2.bahamut.com.tw",
+                    "domain:app-measurement.com"
                 ]
             },
             "localhost"
